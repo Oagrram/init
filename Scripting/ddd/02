@@ -1,0 +1,4 @@
+#!/bin/bash
+USER=$1
+userdel -r -f $USER
+echo "$1 Deleted Successfully"
