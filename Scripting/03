@@ -1,4 +1,6 @@
 #!/bin/bash
+if [ $1 == "-b" ]
+then
 echo "
 ---------------------------------------------------------------------------------------------
 											     |
@@ -21,7 +23,7 @@ echo "
 											     |
 ----------------------------------------------------------------------------------------------
 "
-if [ $1 == "-up" ]
+elif [ $1 == "-up" ]
 then
 apt-get update --yes >> update_script.log && apt-get upgrade --yes >> update_script.log
 mv update_script.log /var/log/
@@ -47,5 +49,6 @@ echo "Usage == ./03 (-arg)
 -lu >> List real users
 -ad >> Add user
 -dl >> Delete user 
--ssh >> Connecting via ssh"
+-ssh >> Connecting via ssh
+-b  >> Bounus"
 fi
