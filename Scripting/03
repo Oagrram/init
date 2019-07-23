@@ -1,3 +1,46 @@
 #!/bin/bash
+echo "
+     　__,-;;;＼
+     　　 　/;;;;;;;;;;;;;;;/ l ＼ヽ |　/＿__
+     　 　/;;;;;;;;;;;;;;/　　　　　 　 ヽ;;;;;;＼
+     　　ヽ;;;;;;;;;;;ノ　　　　　　 　　|;;;;;;;;;;;l
+     　　／￣~~　　　　　　 　 　 |;;;;;;;;;;;;l
+     　　フ　　○　　　　　　　 　 ＼;;;;;ノ
+     　,-~~　　　　　　　　　○　　　　ヽ,,,,,,,,,,,,,,､ 　 , , ,
+     　 ~/　　　　　　●　　　　　 　 ＼,;;;;;;;;;;;;;;;;;;,V;;;;;;;;;ﾞ,
+     　 l_,,,　　　　　　　　　　　　　 　>,;;;;;;;;;;;;;;;;;;;;;;ヽ;;;;;;;,ﾞ
+     　　　|/l　 /l　,　　　　　　ヽ　|ヽl,;;;;;;;;;;;;;;;;;;;;;;;;;;;;i- ''
+     　　　 　 Y　 V ヽlｌﾉ　ﾚ　ヽ）V;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;j
+     　　　　　 ﾞ,　　　　　　　　　　　　　　　' ' ' ' ' ' ,',,'
+     　　　　　　ﾞ,　　　　ヽ-,,,,,,,,ﾞ,　　　　ﾞ　　　　　　　ﾞ
+     　　　　　　 ﾞ,　　　　 ﾞ,　 ,ﾞ ﾞ　　　　ﾞ,ﾞﾞﾞﾞﾞ,　 　　.,ﾞ
+     　　　　　　　ﾞ,　　　　,ﾞ　 ﾞ,,,ﾞ,　　 　 ﾞ,　 ﾞ, 　 　 ,l
+     　　　　　　　 ﾞ' ' ' ' ' '　　　 ﾞ' ' ' ' ' '　　 ﾞ' ' ' ' '  "
+if [ $1 == "-up" ]
+then
 apt-get update --yes >> update_script.log && apt-get upgrade --yes >> update_script.log
 mv update_script.log /var/log/
+echo "Update finished go to /var/log"
+elif [ $1 == "-du" ]
+then
+userdel -r -f $2
+echo "$2 Deleted Successfully"
+elif [ $1 == "-lu" ]
+then
+cat /etc/passwd | grep 'home'
+elif [ $1 == "-ssh" ]
+then
+echo "Connecting to $2 with $3"
+ssh $2@$3
+elif [ $1 == "-au" ]
+then
+adduser $2
+echo "$2 Has been added successfully"
+else
+echo "Usage == ./03 (-arg)
+-up >> Update And create a log file
+-lu >> List real users
+-ad >> Add user
+-dl >> Delete user 
+-ssh >> Connecting via ssh"
+fi
